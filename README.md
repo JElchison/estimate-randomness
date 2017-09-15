@@ -1,16 +1,18 @@
 # estimate-randomness
-Estimate the randomness of a sequence of integers meant to model a discrete distribution
+Estimate the randomness of a sequence of integers meant to model a discrete distribution.
 
 A perfectly random discrete distribution will model a [discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution), having a maximum entropy of `ln(n)`.  This script attempts to estimate the amount of randomness of a sequence of integers in that distribution.
 
-It does so by first calculating the [entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory)) of the data set.  Then, it repeats the process, but replacing the data set with its differential complement.  Item 5 in the list is replaced by the difference between item 5 and 4.  This is to prevent a sequence like `1 2 3 4 5` from being considered random.  While perfectly uniform, it has maximal entropy; however, it should not be considered random.
+It does so by first calculating the [entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory)) of the data set.  Then, it repeats the process, but replacing the data set with its differential complement.  (e.g. Item 5 in the list is replaced by the difference between item 5 and 4.)  This is to prevent a sequence like `1 2 3 4 5` from being considered random.  While perfectly uniform, it has maximal entropy; however, it should not be considered random.
 
-The value reported as estimated_randomness is the minium value of the entropy of the data set and the entropy of its differential complement.
+The value reported as estimated_randomness is the minimum value of the entropy of the data set and the entropy of its differential complement.
 
-    * 0.0 means not random
-    * 1.0 means highly random
+* 0.0 means not random
+* 1.0 means highly random
 
-With a large enough data set, the reported estimated_randomness value should approximate 1.0.
+With a large enough data set, the reported estimated_randomness value should approximate 1.0 for truly random data sources.
+
+Disclaimer:  A high estimated_randomness value does not *prove* that the input stream is random.  [Proving randomness](https://en.wikipedia.org/wiki/Randomness_tests) is a difficult task.
 
 
 ## Usage
